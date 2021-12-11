@@ -7,6 +7,9 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
+      export TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION}
+      aws codeguru-reviewer create-code-review --name mycodereview$TAG --repository-association-arn arn:aws:codeguru-reviewer:us-east-1:729790412815:association:a708d3c3-441c-400f-963e-1fd6693ec68d:code-review:RepositoryAnalysis-elastic-sheila-master-31dde863-435c-4732-b114-d00774ca3633 --tpe RepositoryAnalysis={RepositoryHead={BranchName=master}}
+      env
   build:
     commands:
       - echo Build started on `date`
